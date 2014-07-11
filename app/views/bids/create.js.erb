@@ -1,0 +1,7 @@
+<% if @bid.errors.any? %>
+  $(".bid-errors").html("<%= j render partial: 'shared/standard_errors', locals: { object: @bid } %>");
+<% else %>
+  $(".bids").prepend("<%= j render partial: 'auctions/bid', locals: { bid: @bid } %>").children().first().hide().fadeIn();
+  $(".bid-errors").html("");
+  $("#bid_amount").val("");
+<% end %>

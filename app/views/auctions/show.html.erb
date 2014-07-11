@@ -2,9 +2,10 @@
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <h2><%= @auction.title %></h2>
     <p><%= @auction.details %></p>
-    <%= simple_form_for [@auction, @bid] do |f| %>
+    <div class="bid-errors"></div>
+    <%= simple_form_for [@auction, @bid], remote: true do |f| %>
       <%= f.input :title, :as => :hidden, :input_html => { :value => "" } %>
-      <%= f.input :amount %>
+      <%= f.input :amount, class: "bid-input" %>
       <%= f.submit class: "btn btn-info" %>
     <% end %>
   </div>
@@ -25,10 +26,10 @@
 <div class="row">
   <div class="col-sm-12">
   <h3>Previous bids</h3>
-  <% @auction.bids.order("amount DESC").each do |bid| %>
-    <p>$<%= bid.amount %> at <%= bid.created_at.strftime("%d %B, %Y") %> 
-      by <%= link_to bid.user.email, user_path(bid.user) %></p>
-    <hr>
-  <% end %>
+    <div class="bids">
+      <% @auction.bids.order("amount DESC").each do |bid| %>
+        <%= render partial: "auctions/bid", locals: { bid: bid } %>
+      <% end %>
+    </div>
   </div>
 </div>

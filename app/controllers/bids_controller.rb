@@ -8,11 +8,15 @@ class BidsController < ApplicationController
     if @auction.user == current_user
       redirect_to @auction, alert: "You can't bid on your own auction"
     else
-      if @bid.save
-        redirect_to @auction, notice: "Bid posted!"
-      else
-        flash.now[:alert] = "There was a problem posting your bid."
-        render "auctions/show"
+      respond_to do |format|
+        if @bid.save
+          format.html { redirect_to @auction, notice: "Bid posted!" }
+          format.js   { render }
+        else
+          format.html { flash.now[:alert] = "There was a problem posting your bid."
+                        render "auctions/show" }
+          format.js   { render }
+        end
       end
     end
   end
