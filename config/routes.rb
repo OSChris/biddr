@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :bids
+
   devise_for :users
   resources :auctions
 

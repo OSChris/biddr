@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <%= render 'layouts/navbar' %>
+
   <div class="container">
     <% if flash[:notice] %>
       <div class="alert alert-success">
