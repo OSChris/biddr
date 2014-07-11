@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_auction, except: [:index, :new, :create]
 
   def index

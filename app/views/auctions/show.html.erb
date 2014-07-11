@@ -17,6 +17,18 @@
       <% else %>
         <h3> Reserve NOT Met</h3>
       <% end %>
+      <small>Ends on: <%= @auction.end_date %></small>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+  <h3>Previous bids</h3>
+  <% @auction.bids.order("amount DESC").each do |bid| %>
+    <p>$<%= bid.amount %> at <%= bid.created_at.strftime("%d %B, %Y") %> 
+      by <%= link_to bid.user.email, user_path(bid.user) %></p>
+    <hr>
+  <% end %>
   </div>
 </div>

@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1><%= @user.email %>'s Bids</h1>
+    <% @user.bids.each do |bid|  %>
+      <div class="well">
+        <h3>$ <%= bid.amount %></h3>
+        <h4>On auction: <%= link_to bid.auction.title, auction_path(bid.auction) %></h4>
+      </div>
+    <% end %>
+  </div>
+</div>
