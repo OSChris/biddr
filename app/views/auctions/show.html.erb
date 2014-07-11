@@ -11,7 +11,9 @@
   </div>
 
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-    <h4><strong>Current Price: $<%= @auction.current_price %></strong></h4>
+    <h4><strong style="float: left;">Current Price($):
+      <div id="current-price"><%= @auction.current_price %></div>
+    </strong></h4>
     <div class="well">
       <% if @auction.state == "reserve_met" %>
         <h3>Reserve Met</h3>

@@ -2,7 +2,7 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :auction
 
-  validates :amount, numericality: { greater_than_or_equal_to: :auction_current_price }
+  validates :amount, numericality: { greater_than: :auction_current_price }
 
 
   after_save :update_current_price
