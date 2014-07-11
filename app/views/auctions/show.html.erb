@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <h2><%= @auction.title %></h2>
+    <p><%= @auction.details %></p>
+    <%= simple_form_for [@auction, @bid] do |f| %>
+      <%= f.input :title, :as => :hidden, :input_html => { :value => "" } %>
+      <%= f.input :amount %>
+      <%= f.submit class: "btn btn-info" %>
+    <% end %>
+  </div>
+
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <h4><strong>Current Price: $<%= @auction.current_price %></strong></h4>
+  </div>
+</div>

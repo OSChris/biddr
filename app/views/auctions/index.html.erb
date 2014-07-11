@@ -1,1 +1,12 @@
-<h1> List of Auctions </h1>
+<div class="row">
+  <div class="col-sm-12">
+    <h1> List of Auctions </h1>
+
+    <% @auctions.each do |auction| %>
+      <div class="well">
+        <h3><%= link_to auction.title, auction %></h3>
+        </p>Current price: <%= auction.current_price %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

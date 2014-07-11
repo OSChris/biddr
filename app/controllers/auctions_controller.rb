@@ -7,6 +7,7 @@ class AuctionsController < ApplicationController
   end
 
   def show
+    @bid = Bid.new
   end
 
   def new
@@ -28,7 +29,12 @@ class AuctionsController < ApplicationController
   end
 
   def update
-
+    if @auction.update_attributes(auction_params)
+      redirect_to @auction, notice: "Auction successfully updated"
+    else
+      render :edit
+      flash.now[:alert] = "Problem updating auction"
+    end
   end
 
   def destroy
@@ -39,7 +45,8 @@ class AuctionsController < ApplicationController
   private
 
   def auction_params
-    params.require(:auction).permit(:title, :details, :end_date, :reserve)
+    params.require(:auction).permit(:title, :details, :end_date, 
+                                    :reserve, :state)
   end
 
   def find_auction

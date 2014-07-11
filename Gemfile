@@ -19,6 +19,10 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'simple_form'
 
+gem 'virtus'
+
+gem 'state_machine'
+
 gem 'devise'
 
 

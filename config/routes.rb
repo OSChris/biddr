@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :bids
 
   devise_for :users
-  resources :auctions
+  resources :auctions do 
+    resources :bids, only: [:create]
+  end
 
   root 'auctions#index'
   # The priority is based upon order of creation: first created -> highest priority.
