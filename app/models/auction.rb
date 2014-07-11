@@ -7,6 +7,8 @@ class Auction < ActiveRecord::Base
 
   has_many :bids, dependent: :destroy
 
+  after_save :reserve_met?
+
   # State Machine 
 
   state_machine :state, initial: :published do 
@@ -33,4 +35,9 @@ class Auction < ActiveRecord::Base
 
   private
 
+  def reserve_met?
+    if self.current_price > self.reserve
+      self.meeting_reserve
+    end
+  end
 end

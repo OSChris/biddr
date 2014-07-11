@@ -20,8 +20,8 @@ class AuctionsController < ApplicationController
     if @auction.save
       redirect_to @auction, notice: "Auction created!"
     else
-      render :new
       flash.now[:alert] = "Nope."
+      render :new
     end
   end
 

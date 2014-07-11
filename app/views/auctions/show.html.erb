@@ -9,7 +9,14 @@
     <% end %>
   </div>
 
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <h4><strong>Current Price: $<%= @auction.current_price %></strong></h4>
+    <div class="well">
+      <% if @auction.state == "reserve_met" %>
+        <h3>Reserve Met</h3>
+      <% else %>
+        <h3> Reserve NOT Met</h3>
+      <% end %>
+    </div>
   </div>
 </div>

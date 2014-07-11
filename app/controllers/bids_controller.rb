@@ -5,11 +5,15 @@ class BidsController < ApplicationController
   def create
     @bid = @auction.bids.new(bids_params)
     @bid.user = current_user
-    if @bid.save
-      redirect_to @auction, notice: "Bid posted!"
+    if @auction.user == current_user
+      redirect_to @auction, alert: "You can't bid on your own auction"
     else
-      render "auctions/show"
-      flash.now[:alert] = "There was a problem posting your bid."
+      if @bid.save
+        redirect_to @auction, notice: "Bid posted!"
+      else
+        flash.now[:alert] = "There was a problem posting your bid."
+        render "auctions/show"
+      end
     end
   end
 
